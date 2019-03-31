@@ -27,7 +27,15 @@ public class Main {
         dates.add(new CustomDate(17,1));
 
         pA.addYearlyHabit("Achilles", "His backheel", dates);
+
+        pA.addGym("GET STRONG", "HARD WORK PAYS", days);
+
         pA.printActivities();
+
+        Gym gym = new Gym("GET STRONG", "HARD WORK PAYS", days);
+        gym.addWorkout();
+
+
     }
 }
 
