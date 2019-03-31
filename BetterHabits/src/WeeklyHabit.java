@@ -4,16 +4,17 @@ import java.util.Date;
 import java.util.List;
 
 public class WeeklyHabit extends Activity{
-    private CustomDate date;
-    private List<Integer> days = new ArrayList<Integer>();
+    private CustomDate date = new CustomDate();
+    private ArrayList<Integer> days = new ArrayList<Integer>();
 
     public WeeklyHabit(){}
     public WeeklyHabit(String name, String note, ArrayList<String> days){
         super(name,note);
         for( String idx : days) {
             Integer tempDate = dayStringToInt(idx);
-            days.add(tempDate);
+            this.days.add(tempDate);
         }
+
     }
 
     public CustomDate getDate() {
@@ -26,7 +27,10 @@ public class WeeklyHabit extends Activity{
     public void reset(){
         String day = new SimpleDateFormat("EEEE").format(new Date());
         int intCurrentDay = dayStringToInt(day);
-        if (intCurrentDay != date.getDay()) setStatus(false);
+
+        for(int idx: days){
+            if(intCurrentDay == idx) setStatus(false);
+        }
     }
     public void addWeeklyHabit(String name, String note, CustomDate date){
         addActivity(name,note);
@@ -34,14 +38,12 @@ public class WeeklyHabit extends Activity{
     }
     public void print(){
         System.out.print("\nActivity number " + this.getId() +"\nName: " + getName() +"\nStatus : " + getStatus()+ "\nType: WeeklyHabit\nNote:" + getNote()+"\n");
-    }
+        System.out.print("Days Active : ");
 
-
-    public List<Integer> getDays() {
-        return days;
-    }
-
-    public void setDays(List<Integer> days) {
-        this.days = days;
+        for( int i = 0; i < days.size();i++) {
+            System.out.print(days.get(i) + " ");
+        }
+        System.out.println();
     }
 }
+
