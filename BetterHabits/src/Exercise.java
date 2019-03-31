@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Exercise {
     private String name = "";
@@ -14,7 +15,18 @@ public class Exercise {
         this.reps = reps;
         this.weight = weight;
     }
+    public void set(){
+        Scanner in = new Scanner(System.in);
+        System.out.print("Name : ");
+        name = in.nextLine();
+        System.out.print("sets : ");
+        sets = in.nextInt();
+        System.out.print("reps : ");
+        reps = in.nextInt();
+        System.out.print("weight : ");
+        weight = in.nextFloat();
 
+    }
     public int getReps() {
         return reps;
     }
@@ -48,6 +60,7 @@ public class Exercise {
     }
     public void print(){
         System.out.println(name);
-        System.out.print(sets + "x" + reps + "-" + weight );
+        System.out.println(sets + "x" + reps + "-" + weight );
     }
 }
+
