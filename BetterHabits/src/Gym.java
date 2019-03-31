@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Gym extends WeeklyHabit {
     private ArrayList<Workout> workouts = new ArrayList<Workout>();
@@ -13,6 +14,14 @@ public class Gym extends WeeklyHabit {
 
     public void setWorkouts(ArrayList<Workout> workouts) {
         this.workouts = workouts;
+    }
+    public void addWorkout(){
+        Workout temp = new Workout();
+        System.out.print("Day of workout : ");
+        Scanner in = new Scanner(System.in);
+        int dayOfWorkout = in.nextInt();
+        temp.setDay(dayOfWorkout);
+        temp.addExercises();
     }
 
     public Workout getTodaysWorkout(){
@@ -34,8 +43,8 @@ public class Gym extends WeeklyHabit {
         }
         System.out.println();
 
-
         getTodaysWorkout().print();
     }
 }
+
 
