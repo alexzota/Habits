@@ -34,6 +34,10 @@ public class PersonalAgenda {
         Activity temp = new YearlyHabit(name, note, dates);
         activities.add(temp);
     }
+    public void addGym(String name, String note,ArrayList<String> days){
+        Activity temp = new Gym(name, note, days);
+        activities.add(temp);
+    }
 
     public void printActivities(){
         ArrayList<Activity> temps = this.getActivities();
@@ -41,4 +45,5 @@ public class PersonalAgenda {
     }
 
 }
+
 
