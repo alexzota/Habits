@@ -18,7 +18,7 @@ public class Main {
         days.add("wednesday");
         days.add("friday");
 
-        pA.addWeeklyhabit("Curatenie", "Pe jos si in inima", days);
+        pA.addWeeklyhabit("Curatenie", "Pe jos", days);
 
         ArrayList<Integer> days1 = new ArrayList<Integer>();
         days1.add(2);
@@ -60,7 +60,7 @@ public class Main {
         pA.addSchool("Facultate", "The pen is mightier", days, projects, schedules );
 
 
-        pA.addJob("Software intern", "Internship de vaar", days, projects);
+        pA.addJob("Software intern", "Internship de vara", days, projects);
 
         //pA.printActivities();
 
