@@ -1,5 +1,4 @@
 
-
 public class Activity {
     private static int idx = 1;
     private int id = 1;
@@ -69,6 +68,7 @@ public class Activity {
         this.name = name;
         this.note = note;
     }
+
     public void print(){
         System.out.print("\nActivity number " + this.id + "\nName: " + name +"\nStatus : " + status + "\nNote:" + note+"\n");
     }
@@ -109,3 +109,4 @@ public class Activity {
         return intMonth;
     }
 }
+
