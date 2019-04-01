@@ -38,6 +38,18 @@ public class PersonalAgenda {
         Activity temp = new Gym(name, note, days);
         activities.add(temp);
     }
+    public void addGym(String name, String note,ArrayList<String> days, ArrayList<Workout> wkts){
+        Activity temp = new Gym(name, note, days, wkts);
+        activities.add(temp);
+    }
+    public void addJob(String name, String note, ArrayList<String> days, ArrayList<Project> projects){
+        Activity temp = new Job(name, note, days, projects);
+        activities.add(temp);
+    }
+    public void addSchool(String name, String note, ArrayList<String> days, ArrayList<Project> projects, ArrayList<SchoolDaySchedule> daysSchedule){
+        Activity temp = new School(name, note, days, projects, daysSchedule);
+        activities.add(temp);
+    }
 
     public void printActivities(){
         ArrayList<Activity> temps = this.getActivities();
