@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Scanner;
 
 public class Gym extends WeeklyHabit {
@@ -8,6 +10,10 @@ public class Gym extends WeeklyHabit {
     public Gym(String name, String note, ArrayList<String> days){
         super(name,note, days);
         }
+    public Gym(String name, String note, ArrayList<String> days, ArrayList<Workout> wkts){
+        super(name,note, days);
+        setWorkouts(wkts);
+    }
     public ArrayList<Workout> getWorkouts() {
         return workouts;
     }
@@ -26,8 +32,12 @@ public class Gym extends WeeklyHabit {
 
     public Workout getTodaysWorkout(){
         Workout temp = new Workout();
+        Date date = new Date();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        int currentDay = calendar.get(calendar.DAY_OF_WEEK);
         for(Workout idx : workouts){
-            if (idx.getDay() == getDate().getDay()){
+            if (idx.getDay() == currentDay){
                 temp = idx;
             }
         }
@@ -46,5 +56,6 @@ public class Gym extends WeeklyHabit {
         getTodaysWorkout().print();
     }
 }
+
 
 
