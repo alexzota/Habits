@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class PersonalAgenda {
@@ -56,4 +57,60 @@ public class PersonalAgenda {
         for( Activity idx: temps) idx.print();
     }
 
+    public Activity getActivityById(int id){
+        Activity temp = new Activity();
+        for(int i = 0; i < getActivities().size(); i++) if (getActivities().get(i).getId() == id) temp = getActivities().get(i);
+        return temp;
+    }
+    public void printActivityById(int id){
+        getActivityById(id).print();
+    }
+    public Activity getActivityByName(String name){
+        Activity temp = new Activity();
+        for(int i = 0; i < getActivities().size(); i++) if (getActivities().get(i).getName() == name) temp = getActivities().get(i);
+        return temp;
+    }
+    public void printActivityById(String name){
+        getActivityByName(name).print();
+    }
+
+    public ArrayList<Activity> getDailyHabits(){
+        ArrayList<Activity> dailyHabits = new ArrayList<Activity>();
+        for( Activity idx : getActivities() ){
+            if (idx instanceof DailyHabit) dailyHabits.add(idx);
+        }
+        return dailyHabits;
+    }
+    public void printDailyHabits(){
+        for (Activity idx : getDailyHabits()) idx.print();
+    }
+
+
+
+    public ArrayList<Activity> getCompletedActivities(){
+        ArrayList<Activity> completedActivities = new ArrayList<Activity>();
+        for( Activity idx : getActivities() ){
+            if (idx.getStatus() == true) completedActivities.add(idx);
+        }
+        return completedActivities;
+    }
+
+    public void printCompletedActivities(){
+        for ( Activity idx : getCompletedActivities()){
+            idx.print();
+        }
+    }
+    public ArrayList<Activity> getUncompletedActivities(){
+        ArrayList<Activity> completedActivities = new ArrayList<Activity>();
+        for( Activity idx : getActivities() ){
+            if (idx.getStatus() == false) completedActivities.add(idx);
+        }
+        return completedActivities;
+    }
+
+    public void printUncompletedActivities(){
+        for ( Activity idx : getUncompletedActivities()){
+            idx.print();
+        }
+    }
 }
