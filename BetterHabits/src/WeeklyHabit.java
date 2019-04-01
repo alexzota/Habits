@@ -1,10 +1,10 @@
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
+
 
 public class WeeklyHabit extends Activity{
-    private CustomDate date = new CustomDate();
+
     private ArrayList<Integer> days = new ArrayList<Integer>();
 
     public WeeklyHabit(){}
@@ -17,13 +17,10 @@ public class WeeklyHabit extends Activity{
 
     }
 
-    public CustomDate getDate() {
-        return date;
+    public ArrayList<Integer> getDays(){
+        return this.days;
     }
 
-    public void setDate(CustomDate date) {
-        this.date = date;
-    }
     public void reset(){
         String day = new SimpleDateFormat("EEEE").format(new Date());
         int intCurrentDay = dayStringToInt(day);
@@ -32,10 +29,7 @@ public class WeeklyHabit extends Activity{
             if(intCurrentDay == idx) setStatus(false);
         }
     }
-    public void addWeeklyHabit(String name, String note, CustomDate date){
-        addActivity(name,note);
-        this.date = date;
-    }
+
     public void print(){
         System.out.print("\nActivity number " + this.getId() +"\nName: " + getName() +"\nStatus : " + getStatus()+ "\nType: WeeklyHabit\nNote:" + getNote()+"\n");
         System.out.print("Days Active : ");
@@ -46,4 +40,5 @@ public class WeeklyHabit extends Activity{
         System.out.println();
     }
 }
+
 
