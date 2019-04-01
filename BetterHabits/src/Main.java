@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.List;
 
 public class Main {
 
@@ -12,6 +11,7 @@ public class Main {
 
         ArrayList<String> days = new ArrayList<String>();
         days.add("monday");
+        days.add("tuesday");
         days.add("friday");
 
         pA.addWeeklyhabit("Curatenie", "Pe jos si in inima", days);
@@ -28,14 +28,17 @@ public class Main {
 
         pA.addYearlyHabit("Achilles", "His backheel", dates);
 
-        pA.addGym("GET STRONG", "HARD WORK PAYS", days);
+        Exercise ex = new Exercise("Deadlift", 1, 5, 75);
+        ArrayList<Exercise> exercises = new ArrayList<Exercise>();
+        exercises.add(ex);
+        Workout wk = new Workout( 2, exercises );
+        ArrayList<Workout> wkts = new ArrayList<Workout>();
+        wkts.add(wk);
+        pA.addGym("Strong in body and mind", "Work", days, wkts);
 
         pA.printActivities();
-
-        Gym gym = new Gym("GET STRONG", "HARD WORK PAYS", days);
-        gym.addWorkout();
-
-
+        
     }
 }
+
 
