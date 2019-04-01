@@ -15,6 +15,7 @@ public class Main {
         ArrayList<String> days = new ArrayList<String>();
         days.add("monday");
         days.add("tuesday");
+        days.add("wednesday");
         days.add("friday");
 
         pA.addWeeklyhabit("Curatenie", "Pe jos si in inima", days);
@@ -61,8 +62,11 @@ public class Main {
 
         pA.addJob("Software intern", "Internship de vaar", days, projects);
 
-        pA.printActivities();
+        //pA.printActivities();
 
-
+       // pA.getActivities().get(0).setStatus(true);
+        //pA.printCompletedActivities();
+        //pA.printUncompletedActivities();
+        pA.printDailyHabits();
     }
 }
