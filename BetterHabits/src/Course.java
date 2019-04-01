@@ -1,33 +1,37 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Course {
+public class SchoolDaySchedule {
+    private int day;
+    private ArrayList<Course> courses = new ArrayList<Course>();
 
-    private String name = "";
-    private int startHour;
-    private int endHour;
-
-    public Course(){}
-    public Course(String name,int start, int end, ){
-
-        this.name = name;
-        this.startHour = start;
-        this.endHour = end;
-
+    public SchoolDaySchedule(){}
+    public SchoolDaySchedule(int day, ArrayList<Course> courses){
+        this.day = day;
+        this.courses = courses;
     }
 
-    public void set() {
+    public int getDay() {
+        return day;
+    }
+
+    public void setDay(int day) {
+        this.day = day;
+    }
+    public void addCourses(){
         Scanner in = new Scanner(System.in);
-        System.out.print("Name : ");
-        name = in.nextLine();
-        System.out.print("startHour : ");
-        startHour = in.nextInt();
-        System.out.print("endHour : ");
-        endHour = in.nextInt();
-
+        System.out.print("How many courses do you want to enter : ");
+        int nrCourses = in.nextInt();
+        for(int i = 0; i < nrCourses; i++) {
+            Course temp = new Course();
+            temp.set();
+            courses.add(temp);
+        }
     }
+
     public void print(){
-        System.out.println(name);
-        System.out.println("Name: "  + name + "\nStartHour: " +  startHour + "\nEndHour: " + endHour  );
+        System.out.println("DAY " + day);
+        for(Course idx : courses) idx.print();
+        System.out.println();
     }
 }
