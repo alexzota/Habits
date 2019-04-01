@@ -8,10 +8,9 @@ public class CustomDate {
     public CustomDate(int day){
         this.day = day;
     }
-    public CustomDate(int day, int month, int year){
+    public CustomDate(int day, int month){
         this.day = day;
         this.month = month;
-        this.year = year;
     }
 
     public int getYear() {
@@ -49,3 +48,4 @@ public class CustomDate {
         System.out.print(day + "-" + week + "-" + month + "-" + year+"\n");
     }
 }
+
