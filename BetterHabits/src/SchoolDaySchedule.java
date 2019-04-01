@@ -35,6 +35,14 @@ public class School  extends WeeklyHabit{
         return temp;
     }
     public void print(){
+        System.out.print("\nActivity number " + this.getId() +"\nName: " + getName() +"\nStatus : " + getStatus()+ "\nType: School\nNote:" + getNote()+"\n");
+        System.out.print("Days Active : ");
+
+        for( int idx : this.getDays()) {
+            System.out.print(idx + " ");
+        }
+        System.out.println();
+
         getCurrentDaySchedule().print();
     }
 
