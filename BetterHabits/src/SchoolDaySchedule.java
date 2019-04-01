@@ -1,37 +1,56 @@
 import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.Calendar;
+import java.util.Date;
 
-public class SchoolDaySchedule {
-    private int day;
-    private ArrayList<Course> courses = new ArrayList<Course>();
+public class School  extends WeeklyHabit{
+    private ArrayList<Project> projects = new ArrayList<Project>();
+    private ArrayList<SchoolDaySchedule> daysSchedule = new ArrayList<SchoolDaySchedule>();
 
-    public SchoolDaySchedule(){}
-    public SchoolDaySchedule(int day, ArrayList<Course> courses){
-        this.day = day;
-        this.courses = courses;
+
+    public School(){}
+    public School(String name, String note, ArrayList<String> days, ArrayList<Project> projects){
+        super(name,note,days);
+        this.projects = projects;
     }
 
-    public int getDay() {
-        return day;
+    public void addProject( Project pj ){
+        projects.add(pj);
+    }
+    public void addSchoolDaySchedule(SchoolDaySchedule sds)
+    {
+        daysSchedule.add(sds);
     }
 
-    public void setDay(int day) {
-        this.day = day;
-    }
-    public void addCourses(){
-        Scanner in = new Scanner(System.in);
-        System.out.print("How many courses do you want to enter : ");
-        int nrCourses = in.nextInt();
-        for(int i = 0; i < nrCourses; i++) {
-            Course temp = new Course();
-            temp.set();
-            courses.add(temp);
+    public SchoolDaySchedule getCurrentDaySchedule(){
+        SchoolDaySchedule temp = new SchoolDaySchedule();
+        Date date = new Date();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        int currentDay = calendar.get(calendar.DAY_OF_WEEK);
+        for(SchoolDaySchedule idx : daysSchedule){
+            if (idx.getDay() == currentDay){
+                temp = idx;
+            }
         }
+        return temp;
+    }
+    public void print(){
+        getCurrentDaySchedule().print();
     }
 
-    public void print(){
-        System.out.println("DAY " + day);
-        for(Course idx : courses) idx.print();
-        System.out.println();
+    public ArrayList<Project> getProjects() {
+        return projects;
+    }
+
+    public void setProjects(ArrayList<Project> projects) {
+        this.projects = projects;
+    }
+
+    public ArrayList<SchoolDaySchedule> getDaysSchedule() {
+        return daysSchedule;
+    }
+
+    public void setDaysSchedule(ArrayList<SchoolDaySchedule> daysSchedule) {
+        this.daysSchedule = daysSchedule;
     }
 }
