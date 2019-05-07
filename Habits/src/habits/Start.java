@@ -10,5 +10,6 @@ public class Start {
         personalAgenda.printCompletedActivities();
         personalAgenda.printUncompletedActivities();
         personalAgenda.printDailyHabits();
+        personalAgenda.printYearlyHabits();
     }
 }

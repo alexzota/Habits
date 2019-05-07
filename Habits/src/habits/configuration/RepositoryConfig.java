@@ -6,11 +6,13 @@ import java.io.FileNotFoundException;
 
 public class RepositoryConfig {
     private ActivityRepository activityRepository = null;
+    private YearlyHabitRepository yearlyHabitRepository = null;
     private static RepositoryConfig Instance = new RepositoryConfig();
 
     private RepositoryConfig() {
         try {
-            activityRepository = new ActivityRepositoryFile("DailyHabits.csv", "WeeklyHabits.csv", "MonthlyHabits.csv", "YearlyHabits.csv");
+            activityRepository = new ActivityRepositoryFile("DailyHabits.csv", "WeeklyHabits.csv", "MonthlyHabits.csv");
+            yearlyHabitRepository = new YearlyHabitRepositoryFile("YearlyHabits.csv");
         }
         catch (FileNotFoundException e) {
             System.out.println("Incorrect file path!");
@@ -25,4 +27,7 @@ public class RepositoryConfig {
         return Instance;
     }
 
+    public YearlyHabitRepository getYearlyHabitRepository() {
+        return yearlyHabitRepository;
+    }
 }

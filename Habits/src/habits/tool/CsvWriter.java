@@ -14,7 +14,6 @@ public class CsvWriter {
         try {
             PrintWriter pw = new PrintWriter(new FileWriter(log, true));
             StringBuilder sb = new StringBuilder();
-
             sb.append(comName);
             sb.append(",");
             SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");

@@ -12,7 +12,7 @@ public class ActivityRepositoryFile implements ActivityRepository {
     private ArrayList<Activity> activities = new ArrayList<>();
 
 
-    public ActivityRepositoryFile(String fisier1, String fisier2, String fisier3, String fisier4) throws FileNotFoundException {
+    public ActivityRepositoryFile(String fisier1, String fisier2, String fisier3) throws FileNotFoundException {
         //System.out.println("Si intru si aici");
         FileInputStream dailyHabits = new FileInputStream(fisier1);
         Scanner scanner1 = new Scanner(dailyHabits);
@@ -40,16 +40,6 @@ public class ActivityRepositoryFile implements ActivityRepository {
             int day = Integer.parseInt(valori[2]);
             days.add(day);
             activities.add(new MonthlyHabit(valori[0], valori[1], days));
-        }
-        FileInputStream yearlyHabits = new FileInputStream(fisier3);
-        Scanner scanner4 = new Scanner(yearlyHabits);
-        while(scanner4.hasNext()){
-            String linie = scanner4.nextLine();
-            String[] valori = linie.split(",");
-            CustomDate date = new CustomDate(Integer.parseInt(valori[2]), Integer.parseInt(valori[2]));
-            ArrayList<CustomDate> dates = new ArrayList<CustomDate>();
-            dates.add(date);
-            activities.add(new YearlyHabit(valori[0], valori[1], dates));
         }
     }
 

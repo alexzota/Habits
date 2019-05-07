@@ -5,9 +5,11 @@ import habits.configuration.*;
 import habits.tool.CsvWriter;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class PersonalAgendaService {
     private ActivityRepository activityRepository = RepositoryConfig.getInstance().getActivityRepository();
+    private YearlyHabitRepository yearlyHabitRepository = RepositoryConfig.getInstance().getYearlyHabitRepository();
 //
 //    public void printActivity(Activity object){
 //        System.out.print("\nActivity number " + object.getId() + "\nName: " + object.getName() +"\nStatus : " + object.getStatus() + "\nNote:" + object.getNote()+"\n");
@@ -57,6 +59,16 @@ public class PersonalAgendaService {
 
         ArrayList<Activity> temps = activityRepository.getActivities();
         for( Activity idx: temps) idx.reset();
+    }
+    public void printYearlyHabits(){
+        CsvWriter write = new CsvWriter();
+        write.addToFile("Printed Yearly Habits");
+
+        Iterator<YearlyHabit> idx = yearlyHabitRepository.getYearlyHabits().iterator();
+        while ( idx.hasNext()){
+            YearlyHabit temp = idx.next();
+            System.out.println(temp.toString());
+        }
     }
 
     public Activity getActivityById(int id){
