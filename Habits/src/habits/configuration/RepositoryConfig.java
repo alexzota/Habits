@@ -11,7 +11,7 @@ public class RepositoryConfig {
 
     private RepositoryConfig() {
         try {
-            activityRepository = new ActivityRepositoryFile("DailyHabits.csv", "WeeklyHabits.csv", "MonthlyHabits.csv");
+            activityRepository = new ActivityRepositoryDB();
             yearlyHabitRepository = new YearlyHabitRepositoryFile("YearlyHabits.csv");
         }
         catch (FileNotFoundException e) {
