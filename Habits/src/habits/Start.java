@@ -15,6 +15,17 @@ public class Start {
     public static void main(String[] args) {
         PersonalAgendaService personalAgenda = new PersonalAgendaService();
 
+
+//        personalAgenda.addDailyHabit("Daily Habit 1", "Note of Daily Habit1", false, 2);
+//        personalAgenda.addWeeklyHabit("Weekly Habit 1", "Note of WH1", false, "3,5");
+//        personalAgenda.addMonthlyHabit("Monthly Habit 1", "Note of MH 1", false, "1,9,15");
+//        personalAgenda.addYearlyHabit("Yearly Habit 1", "Note", false, "16-09,23-06");
+
+
+
+
+
+
         JFrame.setDefaultLookAndFeelDecorated(true);
         JFrame window = new JFrame("Habits");
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -35,6 +46,15 @@ public class Start {
         };
         DefaultTableModel tableModel1 = new DefaultTableModel(columnNames, 0);
         for (Activity a : personalAgenda.getActivities()){
+            int id = a.getId();
+            String name = a.getName();
+            String note = a.getNote();
+            Boolean status = a.getStatus();
+
+            Object[] data = new Object[]{id,name,note,status};
+            tableModel1.addRow(data);
+        }
+        for (Activity a : personalAgenda.getYearlyHabits()){
             int id = a.getId();
             String name = a.getName();
             String note = a.getNote();
@@ -99,6 +119,7 @@ public class Start {
         JTable table4 = new JTable(tableModel4);
         JScrollPane sp4 = new JScrollPane(table4);
         sp4.setSize(400,500);
+        card4.add(sp4);
 
 
 
@@ -116,6 +137,7 @@ public class Start {
         JTable table5 = new JTable(tableModel5);
         JScrollPane sp5 = new JScrollPane(table5);
         sp5.setSize(400,500);
+        card5.add(sp5);
 
 
 
