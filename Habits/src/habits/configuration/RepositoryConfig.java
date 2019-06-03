@@ -10,13 +10,8 @@ public class RepositoryConfig {
     private static RepositoryConfig Instance = new RepositoryConfig();
 
     private RepositoryConfig() {
-        try {
-            activityRepository = new ActivityRepositoryDB();
-            yearlyHabitRepository = new YearlyHabitRepositoryFile("YearlyHabits.csv");
-        }
-        catch (FileNotFoundException e) {
-            System.out.println("Incorrect file path!");
-        }
+        activityRepository = new ActivityRepositoryDB();
+        yearlyHabitRepository = new YearlyHabitRepositoryDB();
     }
 
     public ActivityRepository getActivityRepository() {

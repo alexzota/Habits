@@ -6,21 +6,21 @@ import java.util.Date;
 import java.util.TimeZone;
 
 public class YearlyHabit extends Activity implements Comparable<YearlyHabit>{
-    private ArrayList<CustomDate> dates = new ArrayList<CustomDate>();
+    private String[] dates ;
 
     public YearlyHabit() {
     }
 
-    public YearlyHabit(String name, String note, ArrayList<CustomDate> dates) {
+    public YearlyHabit(String name, String note, String[] dates) {
         super(name, note);
         this.dates = dates;
     }
 
-    public ArrayList<CustomDate> getDates() {
+    public String[] getDates() {
         return dates;
     }
 
-    public void setDates(ArrayList<CustomDate> dates) {
+    public void setDates(String[] dates) {
         this.dates = dates;
     }
 
@@ -30,8 +30,11 @@ public class YearlyHabit extends Activity implements Comparable<YearlyHabit>{
         Date date = calendar.getTime();
         int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
         int monthOfYear = calendar.get(Calendar.MONTH);
-        for (CustomDate idx : dates) {
-            if (idx.getDay() == dayOfMonth && idx.getMonth() == monthOfYear) setStatus(false);
+        for (String idx : dates) {
+
+            int dateDayOfMonth = Integer.parseInt(idx.split("-")[0]);
+            int dateMonth = Integer.parseInt(idx.split("-")[1]);
+            if (dateDayOfMonth == dayOfMonth && dateMonth == monthOfYear) setStatus(false);
         }
     }
     public int compareTo(YearlyHabit object){
@@ -41,8 +44,8 @@ public class YearlyHabit extends Activity implements Comparable<YearlyHabit>{
 
     public String toString(){
         String outDates = new String();
-        for (int i = 0; i < dates.size(); i++) {
-            outDates += (dates.get(i).getDay() + "-" + dates.get(i).getMonth()+", ");
+        for (int i = 0; i < dates.length; i++) {
+            outDates += (dates[i] + ", ");
         }
         return  "\nActivity number " + this.getId() + "\nName: " + getName() + "\nStatus : " + getStatus() +
                 "\nType: YearlyHabit\nNote:" + getNote() + "\nDays Active : " + outDates;

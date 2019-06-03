@@ -9,7 +9,7 @@ public class ActivityRepositoryStatic implements ActivityRepository{
 
     public ActivityRepositoryStatic(){
         activities.add(new Activity(" Programare", "E ee"));
-        activities.add(new DailyHabit("Invatat", "la PAO", "Monday"));
+        activities.add(new DailyHabit("Invatat", "la PAO", 1));
     }
 
     public ArrayList<Activity> getActivities(){

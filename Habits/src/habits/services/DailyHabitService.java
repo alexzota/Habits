@@ -11,6 +11,6 @@ public class DailyHabitService {
     public void reset(DailyHabit object){
         String day = new SimpleDateFormat("EEEE").format(new Date());
         int intCurrentDay = DateConverterStoI.dayStringToInt(day);
-        if (intCurrentDay != object.getDate().getDay()) object.setStatus(false);
+        if (intCurrentDay != object.getDay()) object.setStatus(false);
     }
 }

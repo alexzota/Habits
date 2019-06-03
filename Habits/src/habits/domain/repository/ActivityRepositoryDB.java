@@ -1,6 +1,8 @@
 package habits.domain.repository;
 
-import habits.domain.entity.Activity;
+import habits.domain.entity.*;
+import habits.tool.DBCONN;
+
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -11,24 +13,55 @@ public class ActivityRepositoryDB implements ActivityRepository{
     public ActivityRepositoryDB(){
         ResultSet rs = null;
         try {
-            String url = "jdbc:sqlserver://DESKTOP-5MDD5TR\\ZOTASQL:1433;databaseName=HabitsDatabase;";
+            Connection conn = DBCONN.getConnection();
 
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            Connection conn = DriverManager.getConnection(url,"sa","123456");
             Statement pst = conn.createStatement();
-            rs = pst.executeQuery("Select * FROM ACTIVITIES");
+
+            rs = pst.executeQuery("Select * FROM DailyHabits");
 
             while(rs.next()){
-                Activity temp = new Activity();
-                temp.setId(rs.getInt("Id"));
+                DailyHabit temp = new DailyHabit();
                 temp.setName(rs.getString("Name"));
                 temp.setNote(rs.getString("Note"));
                 temp.setStatus(rs.getBoolean("Status"));
-
+                temp.setDay(rs.getInt("Day"));
                 activities.add(temp);
             }
+            rs = pst.executeQuery("Select * FROM WeeklyHabits");
 
-        } catch (SQLException | ClassNotFoundException e) {
+            while(rs.next()){
+                WeeklyHabit temp = new WeeklyHabit();
+                temp.setName(rs.getString("Name"));
+                temp.setNote(rs.getString("Note"));
+                temp.setStatus(rs.getBoolean("Status"));
+                String sDays = rs.getString("Days");
+                String[] dayss = sDays.split(",");
+                ArrayList<Integer> days =  new ArrayList<>();
+                for(String a : dayss){
+                    int b = Integer.parseInt(a);
+                    days.add(b);
+                }
+                temp.setDays(days);
+                activities.add(temp);
+            }
+            rs = pst.executeQuery("Select * FROM MonthlyHabits");
+
+            while(rs.next()){
+                MonthlyHabit temp = new MonthlyHabit();
+                temp.setName(rs.getString("Name"));
+                temp.setNote(rs.getString("Note"));
+                temp.setStatus(rs.getBoolean("Status"));
+                String sDays = rs.getString("Days");
+                String[] dayss = sDays.split(",");
+                ArrayList<Integer> days =  new ArrayList<>();
+                for(String a : dayss){
+                    int b = Integer.parseInt(a);
+                    days.add(b);
+                }
+                temp.setDays(days);
+                activities.add(temp);
+            }
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 

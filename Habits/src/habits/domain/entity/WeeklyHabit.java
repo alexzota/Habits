@@ -15,7 +15,9 @@ public class WeeklyHabit extends Activity{
             this.days.add(tempDate);
         }
     }
-
+    public void setDays(ArrayList<Integer> days){
+        this.days = days;
+    }
     public ArrayList<Integer> getDays(){
         return this.days;
     }

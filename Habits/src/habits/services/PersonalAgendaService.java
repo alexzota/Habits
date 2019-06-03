@@ -3,7 +3,12 @@ import habits.domain.repository.*;
 import habits.domain.entity.*;
 import habits.configuration.*;
 import habits.tool.CsvWriter;
+import habits.tool.DBCONN;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -46,6 +51,178 @@ public class PersonalAgendaService {
 //        System.out.println();
 //    }
 
+    public void addDailyHabit(String name, String note, boolean status,int day){
+        try {
+            Connection conn = DBCONN.getConnection();
+            int idx = Activity.getIdx();
+            String sqlQ = "INSERT INTO DailyHabits([Id],[Name],[Note],[Status],[Day]) VALUES (?,?,?,?,?) ";
+            PreparedStatement sqlstatement = conn.prepareStatement(sqlQ);
+            sqlstatement.setInt(1, idx);
+            sqlstatement.setString(2, name);
+            sqlstatement.setString(3, note);
+            sqlstatement.setBoolean(4, status);
+            sqlstatement.setInt(5, day);
+            sqlstatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    public void updateDailyHabit(int id,String name){
+        try {
+            Connection conn = DBCONN.getConnection();
+            int idx = Activity.getIdx();
+            String sqlQ = "UPDATE DailyHabits " +
+                    "SET Name = ? WHERE id = ?";
+            PreparedStatement sqlstatement = conn.prepareStatement(sqlQ);
+            sqlstatement.setString(1, name);
+            sqlstatement.setInt(2, id);
+            sqlstatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    public void deleteDailyHabit(int id){
+        try {
+            Connection conn = DBCONN.getConnection();
+
+            String sqlQ = "DELETE FROM DailyHabits " +
+                          "WHERE id = ?";
+            PreparedStatement sqlstatement = conn.prepareStatement(sqlQ);
+            sqlstatement.setInt(1, id);
+            sqlstatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    public void addWeeklyHabit(String name, String note, boolean status,String days){
+        try {
+            Connection conn = DBCONN.getConnection();
+            int idx = Activity.getIdx();
+            String sqlQ = "INSERT INTO WeeklyHabits([Id],[Name],[Note],[Status],[Days]) VALUES (?,?,?,?,?) ";
+            PreparedStatement sqlstatement = conn.prepareStatement(sqlQ);
+            sqlstatement.setInt(1, idx);
+            sqlstatement.setString(2, name);
+            sqlstatement.setString(3, note);
+            sqlstatement.setBoolean(4, status);
+            sqlstatement.setString(5, days);
+            sqlstatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    public void updateWeeklyHabit(int id,String days){
+        try {
+            Connection conn = DBCONN.getConnection();
+            int idx = Activity.getIdx();
+            String sqlQ = "UPDATE WeeklyHabits " +
+                    "SET days = ? WHERE id = ?";
+            PreparedStatement sqlstatement = conn.prepareStatement(sqlQ);
+            sqlstatement.setString(1, days);
+            sqlstatement.setInt(2, id);
+            sqlstatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    public void deleteWeeklyHabit(int id){
+        try {
+            Connection conn = DBCONN.getConnection();
+
+            String sqlQ = "DELETE FROM WeeklyHabits " +
+                    "WHERE id = ?";
+            PreparedStatement sqlstatement = conn.prepareStatement(sqlQ);
+            sqlstatement.setInt(1, id);
+            sqlstatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    public void updateMonthlyHabit(int id,String days){
+        try {
+            Connection conn = DBCONN.getConnection();
+            int idx = Activity.getIdx();
+            String sqlQ = "UPDATE MonthlyHabits " +
+                    "SET days = ? WHERE id = ?";
+            PreparedStatement sqlstatement = conn.prepareStatement(sqlQ);
+            sqlstatement.setString(1, days);
+            sqlstatement.setInt(2, id);
+            sqlstatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    public void addMonthlyHabit(String name, String note, boolean status,String days){
+        try {
+            Connection conn = DBCONN.getConnection();
+            int idx = Activity.getIdx();
+            String sqlQ = "INSERT INTO MonthlyHabits([Id],[Name],[Note],[Status],[Days]) VALUES (?,?,?,?,?) ";
+            PreparedStatement sqlstatement = conn.prepareStatement(sqlQ);
+            sqlstatement.setInt(1, idx);
+            sqlstatement.setString(2, name);
+            sqlstatement.setString(3, note);
+            sqlstatement.setBoolean(4, status);
+            sqlstatement.setString(5, days);
+            sqlstatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    public void deleteMonthlyHabit(int id){
+        try {
+            Connection conn = DBCONN.getConnection();
+
+            String sqlQ = "DELETE FROM MonthlyHabits " +
+                    "WHERE id = ?";
+            PreparedStatement sqlstatement = conn.prepareStatement(sqlQ);
+            sqlstatement.setInt(1, id);
+            sqlstatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    public void addYearlyHabit(String name, String note, boolean status,String dates){
+        try {
+            Connection conn = DBCONN.getConnection();
+            int idx = Activity.getIdx();
+            String sqlQ = "INSERT INTO YearlyHabits([Id],[Name],[Note],[Status],[Dates]) VALUES (?,?,?,?,?) ";
+            PreparedStatement sqlstatement = conn.prepareStatement(sqlQ);
+            sqlstatement.setInt(1, idx);
+            sqlstatement.setString(2, name);
+            sqlstatement.setString(3, note);
+            sqlstatement.setBoolean(4, status);
+            sqlstatement.setString(5, dates);
+            sqlstatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    public void updateYearlyHabit(int id,String days){
+        try {
+            Connection conn = DBCONN.getConnection();
+            int idx = Activity.getIdx();
+            String sqlQ = "UPDATE YearlyHabits " +
+                    "SET days = ? WHERE id = ?";
+            PreparedStatement sqlstatement = conn.prepareStatement(sqlQ);
+            sqlstatement.setString(1, days);
+            sqlstatement.setInt(2, idx);
+            sqlstatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    public void deleteYearlyHabit(int id){
+        try {
+            Connection conn = DBCONN.getConnection();
+
+            String sqlQ = "DELETE FROM YearlyHabits " +
+                    "WHERE id = ?";
+            PreparedStatement sqlstatement = conn.prepareStatement(sqlQ);
+            sqlstatement.setInt(1, id);
+            sqlstatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
     public void printActivities(){
         CsvWriter write = new CsvWriter();
         write.addToFile("Print Activities");

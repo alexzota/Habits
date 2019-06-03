@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.TimeZone;
 
 public class MonthlyHabit extends Activity {
-    private CustomDate date = new CustomDate();
+    //private CustomDate date = new CustomDate();
     private ArrayList<Integer> days = new ArrayList<Integer>();
 
     public MonthlyHabit() {
@@ -17,13 +17,13 @@ public class MonthlyHabit extends Activity {
         this.days = days;
     }
 
-    public CustomDate getDate() {
-        return date;
-    }
-
-    public void setDate(CustomDate date) {
-        this.date = date;
-    }
+//    public CustomDate getDate() {
+//        return date;
+//    }
+//
+//    public void setDate(CustomDate date) {
+//        this.date = date;
+//    }
 
     public ArrayList<Integer> getDays() {
         return days;
