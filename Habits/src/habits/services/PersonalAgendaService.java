@@ -9,8 +9,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.Year;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 public class PersonalAgendaService {
     private ActivityRepository activityRepository = RepositoryConfig.getInstance().getActivityRepository();
@@ -50,6 +52,9 @@ public class PersonalAgendaService {
 //        }
 //        System.out.println();
 //    }
+
+    public List<Activity> getActivities(){ return activityRepository.getActivities(); }
+
 
     public void addDailyHabit(String name, String note, boolean status,int day){
         try {
@@ -281,6 +286,27 @@ public class PersonalAgendaService {
         CsvWriter write = new CsvWriter();
         write.addToFile("Printed the Daily Habits");
         for (Activity idx : getDailyHabits()) idx.print();
+    }
+    public ArrayList<Activity> getWeeklyHabits(){
+        ArrayList<Activity> WeeklyHabits = new ArrayList<Activity>();
+        for( Activity idx : activityRepository.getActivities() ){
+            if (idx instanceof WeeklyHabit) WeeklyHabits.add(idx);
+        }
+        return WeeklyHabits;
+    }
+    public ArrayList<Activity> getMonthlyHabits(){
+        ArrayList<Activity> MonthlyHabits = new ArrayList<Activity>();
+        for( Activity idx : activityRepository.getActivities() ){
+            if (idx instanceof MonthlyHabit) MonthlyHabits.add(idx);
+        }
+        return MonthlyHabits;
+    }
+    public ArrayList<Activity> getYearlyHabits(){
+        ArrayList<Activity> YearlyHabits = new ArrayList<Activity>();
+        for( Activity idx : yearlyHabitRepository.getYearlyHabits() ){
+            if (idx instanceof YearlyHabit) YearlyHabits.add(idx);
+        }
+        return YearlyHabits;
     }
 
 
